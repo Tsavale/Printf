@@ -1,69 +1,54 @@
+SRCSC		= ft_printf.c\
+				ft_infos.c\
+				ft_conversion.c\
+				ft_flags.c\
+				ft_symbole.c
 
-CC	= gcc
+SRCSH		= ft_printf.h
 
-CFLAGS	= -g -Wall -Wextra -Werror
+OBJS		= $(SRCSC:%.c=%.o)
 
-LIBFT	= ./libft
+LIBFTDIR	= libft
 
-HEADERS	= ./include/
+LIBFT		= libft.a
 
-DIR_S	= ./src
+NAME		= libftprintf.a
 
-DIR_O	= temporary
+CC			= gcc
 
-RM	= rm -f
+AR			= ar -rc
 
-NAME	=	libftprintf.a
+RM			= rm -f
 
-SOURCES	=	ft_printf.c\
-		check/check_flags_width_precision.c\
-		check/check_lenght_specifies.c\
-		check/check_type.c\
-		print_buffer/find_conv_type.c\
-		put_format/precision_integer.c\
-		put_format/width_integer.c\
-		put_format/hash_and_signe.c\
-		conversion/conv_type_c.c\
-		conversion/conv_type_string.c\
-		conversion/conv_type_integer.c\
-		conversion/conv_type_n.c\
-		conversion/ntoa.c\
-		conversion/conv_type_percentage.c\
-		conversion/conv_type_float.c\
-		conversion/fill_buffer.c\
-		conversion/conv_type_addr.c\
-		conversion/special_case_with_zero.c\
-		conversion/index_max_buf.c\
-		conversion/ignore_0.c\
-		conversion/integer_flags_left_or_no_flags_left.c\
+CFLAGS		= -Wall -Wextra -Werror
 
-SRC = $(addprefix $(DIR_S)/,$(SOURCES))
+$(NAME):	${OBJS} ${LIBFT}
+			${AR} ${NAME} ${OBJS} ${SRCSH} ${LIBFTDIR}/*.o
 
-OBJ = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
-all:	$(NAME)
+$(LIBFT):
+			cd ${LIBFTDIR} && make $@
 
-$(NAME): $(OBJ)
-	make -C $(LIBFT)
-	cp ./libft/libft.a ./$(NAME)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
-
-$(DIR_O)/%.o: $(DIR_S)/%.c
-	@mkdir -p temporary
-	@mkdir -p temporary/check/
-	@mkdir -p temporary/print_buffer
-	@mkdir -p temporary/put_format
-	@mkdir -p temporary/conversion
-	@$(CC) $(CFLAGS) -I $(HEADERS) -o $@ -c $<
+all:		${NAME}
 
 clean:
-	@rm -rf $(DIR_O)
-	@rm -f $(OBJ)
-	@make clean -C $(LIBFT)
+			${RM} ${OBJS}
+			cd ${LIBFTDIR} && make $@
 
-fclean: clean
-	@rm -f $(NAME)
-	@make fclean -C $(LIBFT)
+fclean:		clean
+			${RM} ${NAME}
+			cd ${LIBFTDIR} && make $@
 
-re: fclean all
+re:			fclean all
+
+bonus:		all
+
+test:		re
+			@${CC} main.c ${NAME}
+			make clean
+			@echo "\n================" 
+			@./a.out
+			@echo "\n================" 
+
+
+.PHONY:		all clean fclean re
