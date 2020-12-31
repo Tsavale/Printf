@@ -1,5 +1,5 @@
 SRCSC		= ft_printf.c\
-				ft_infos.c\
+				ft_check_syntax.c\
 				ft_conversion.c\
 				ft_flags.c\
 				ft_symbole.c

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsavale <tsavale@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/31 14:58:32 by tsavale           #+#    #+#             */
+/*   Updated: 2020/12/31 14:58:51 by tsavale          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
@@ -18,13 +30,13 @@ typedef struct	s_fl
 }				t_fl;
 
 int				ft_printf(const char *s, ...);
-int				ft_format(const char *s, va_list *ap, t_fl *fl);
-int				ft_process(va_list *ap, char *s, t_fl *fl);
+int				ft_size(const char *s, va_list *ap, t_fl *fl);
+int				ft_check_and_convert(va_list *ap, char *s, t_fl *fl);
 int				ft_write(va_list *ap, t_fl *fl);
 void			ft_start_fl(t_fl *);
-int				ft_flag_inf(char *s, t_fl *fl);
-int				ft_fw_inf(va_list *ap, char *s, t_fl *fl);
-int				ft_precision_inf(va_list *ap, char *s, t_fl *fl);
+int				ft_flag_fl(char *s, t_fl *fl);
+int				ft_fw_fl(va_list *ap, char *s, t_fl *fl);
+int				ft_precision_fl(va_list *ap, char *s, t_fl *fl);
 void			ft_conversion(va_list *ap, char c, t_fl *fl);
 void			ft_flag_applier(t_fl *fl);
 void			ft_special_cases(t_fl *fl);

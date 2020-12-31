@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_flags.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsavale <tsavale@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/31 14:58:19 by tsavale           #+#    #+#             */
+/*   Updated: 2020/12/31 15:11:18 by tsavale          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void		ft_flag_applier(t_fl *fl)
+void	ft_flag_applier(t_fl *fl)
 {
-	char *tmp;
+	char	*tmp;
 
 	ft_special_cases(fl);
 	if (fl->str && fl->p >= 0 && fl->cv == 's')
@@ -19,7 +31,7 @@ void		ft_flag_applier(t_fl *fl)
 		ft_space_flags(fl);
 }
 
-void		ft_special_cases(t_fl *fl)
+void	ft_special_cases(t_fl *fl)
 {
 	char	*tmp;
 
@@ -33,15 +45,14 @@ void		ft_special_cases(t_fl *fl)
 		}
 		if (fl->p <= -1 || (fl->cv == '%'))
 			fl->p = (fl->str[0] == '-') ? fl->zeros - 1 : fl->zeros;
-		else if (fl->p < fl->zeros + (fl->str[0] == '-') && (fl->fw >= 0)
-																&& fl->p != 0)
+		else if (fl->p < fl->zeros + (fl->str[0] == '-') && (fl->fw >= 0) && fl->p != 0)
 			fl->fw = fl->zeros;
 	}
 	if (fl->str == NULL && fl->cv == 's')
 		fl->str = ft_strdup("(null)");
 }
 
-void		ft_point_flag_str(t_fl *fl)
+void	ft_point_flag_str(t_fl *fl)
 {
 	char	*tmp;
 	int		i;
@@ -55,7 +66,7 @@ void		ft_point_flag_str(t_fl *fl)
 	}
 }
 
-void		ft_point_flag_nbr(t_fl *fl)
+void	ft_point_flag_nbr(t_fl *fl)
 {
 	char	*s;
 	char	*tmp;
@@ -64,7 +75,7 @@ void		ft_point_flag_nbr(t_fl *fl)
 	i = 0;
 	if (fl->p > ((int)ft_strlen(fl->str) - (fl->str[0] == '-')))
 	{
-		if (!(s = malloc(sizeof(char*) * (fl->p + (fl->str[0] == '-') + 1))))
+		if (!(s = malloc(sizeof(char *) * (fl->p + (fl->str[0] == '-') + 1))))
 			return ;
 		if (fl->str[0] == '-')
 			s[i++] = '-';
@@ -78,7 +89,7 @@ void		ft_point_flag_nbr(t_fl *fl)
 	}
 }
 
-void		ft_space_flags(t_fl *fl)
+void	ft_space_flags(t_fl *fl)
 {
 	char	*s;
 	char	*tmp;

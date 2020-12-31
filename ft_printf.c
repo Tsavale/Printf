@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsavale <tsavale@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/31 14:58:27 by tsavale           #+#    #+#             */
+/*   Updated: 2020/12/31 14:58:51 by tsavale          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int			ft_printf(const char *format, ...)
@@ -11,13 +23,13 @@ int			ft_printf(const char *format, ...)
 	if (!(fl = (t_fl*)(malloc(sizeof(t_fl)))))
 		return (0);
 	va_start(ap, format);
-	size = ft_format(format, &ap, fl);
+	size = ft_size(format, &ap, fl);
 	va_end(ap);
 	free(fl);
 	return (size);
 }
 
-int			ft_format(const char *format, va_list *ap, t_fl *fl)
+int			ft_size(const char *format, va_list *ap, t_fl *fl)
 {
 	int		size;
 
@@ -27,7 +39,7 @@ int			ft_format(const char *format, va_list *ap, t_fl *fl)
 		ft_start_fl(fl);
 		if (*format == '%')
 		{
-			format += ft_process(ap, (char *)format + 1, fl);
+			format += ft_check_and_convert(ap, (char *)format + 1, fl);
 			size += (fl->cv == 'c') ? ft_write(ap, fl) : ft_strlen(fl->str);
 			if (fl->str)
 				ft_putstr_fd(fl->str, 1);
@@ -45,18 +57,18 @@ int			ft_format(const char *format, va_list *ap, t_fl *fl)
 	return (size);
 }
 
-int			ft_process(va_list *ap, char *str, t_fl *fl)
+int			ft_check_and_convert(va_list *ap, char *str, t_fl *fl)
 {
 	int i;
 
 	i = 0;
-	i += ft_flag_inf(&str[i], fl);
-	i += ft_fw_inf(ap, &str[i], fl);
+	i += ft_flag_fl(&str[i], fl);
+	i += ft_fw_fl(ap, &str[i], fl);
 	if (str[i] == '.')
 	{
 		fl->p = 0;
 		i++;
-		i += ft_precision_inf(ap, &str[i], fl);
+		i += ft_precision_fl(ap, &str[i], fl);
 	}
 	if (ft_isaconversion(str[i]))
 		ft_conversion(ap, str[i], fl);

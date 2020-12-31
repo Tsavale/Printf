@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_conversion.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsavale <tsavale@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/31 14:57:40 by tsavale           #+#    #+#             */
+/*   Updated: 2020/12/31 14:58:03 by tsavale          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void		ft_conversion(va_list *ap, char c, t_fl *fl)
+void	ft_conversion(va_list *ap, char c, t_fl *fl)
 {
 	fl->cv = c;
 	if (c == 'c')
