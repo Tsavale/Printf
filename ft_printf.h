@@ -6,7 +6,7 @@
 /*   By: tsavale <tsavale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 14:58:32 by tsavale           #+#    #+#             */
-/*   Updated: 2020/12/31 14:58:51 by tsavale          ###   ########.fr       */
+/*   Updated: 2020/12/31 16:09:49 by tsavale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int				ft_printf(const char *s, ...);
 int				ft_size(const char *s, va_list *ap, t_fl *fl);
 int				ft_check_and_convert(va_list *ap, char *s, t_fl *fl);
 int				ft_write(va_list *ap, t_fl *fl);
-void			ft_start_fl(t_fl *);
+void			ft_start_fl(t_fl *fl);
 int				ft_flag_fl(char *s, t_fl *fl);
 int				ft_fw_fl(va_list *ap, char *s, t_fl *fl);
 int				ft_precision_fl(va_list *ap, char *s, t_fl *fl);

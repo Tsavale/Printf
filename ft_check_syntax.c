@@ -6,7 +6,7 @@
 /*   By: tsavale <tsavale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 14:56:54 by tsavale           #+#    #+#             */
-/*   Updated: 2020/12/31 14:58:03 by tsavale          ###   ########.fr       */
+/*   Updated: 2020/12/31 16:02:51 by tsavale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	ft_start_fl(t_fl *fl)
 	fl->zeros = 0;
 }
 
-int	ft_flag_fl(char *str, t_fl *fl)
+int		ft_flag_fl(char *str, t_fl *fl)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (ft_isflag(str[i]))
@@ -39,10 +39,10 @@ int	ft_flag_fl(char *str, t_fl *fl)
 	return (i);
 }
 
-int	ft_fw_fl(va_list *ap, char *str, t_fl *fl)
+int		ft_fw_fl(va_list *ap, char *str, t_fl *fl)
 {
-	int		i;
-	int		sign;
+	int	i;
+	int	sign;
 
 	i = 0;
 	sign = 1;
@@ -68,9 +68,9 @@ int	ft_fw_fl(va_list *ap, char *str, t_fl *fl)
 	return (i);
 }
 
-int	ft_precision_fl(va_list *ap, char *str, t_fl *fl)
+int		ft_precision_fl(va_list *ap, char *str, t_fl *fl)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '*' || ft_isdigit(str[i]))

@@ -6,7 +6,7 @@
 /*   By: tsavale <tsavale@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 14:58:19 by tsavale           #+#    #+#             */
-/*   Updated: 2020/12/31 15:11:18 by tsavale          ###   ########.fr       */
+/*   Updated: 2020/12/31 16:09:25 by tsavale          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	ft_special_cases(t_fl *fl)
 		}
 		if (fl->p <= -1 || (fl->cv == '%'))
 			fl->p = (fl->str[0] == '-') ? fl->zeros - 1 : fl->zeros;
-		else if (fl->p < fl->zeros + (fl->str[0] == '-') && (fl->fw >= 0) && fl->p != 0)
+		else if (fl->p < fl->zeros + (fl->str[0] == '-') && (fl->fw >= 0)
+		&& fl->p != 0)
 			fl->fw = fl->zeros;
 	}
 	if (fl->str == NULL && fl->cv == 's')
